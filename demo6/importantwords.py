@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'huangxin'
 import os, re
+from collections import Counter
 #找到该路径下的所有文件
 def get_files(path):
     filepath = os.listdir(path)
@@ -34,4 +35,13 @@ def get_important_words(files):
 
 filess = get_files('/Users/huangxin/PycharmProjects/ex/words')
 worddict = get_important_words(filess)
-print(worddict)
+
+#可能出现多个最多次数
+maxnum = 1
+for i in range(len(worddict) - 1):
+    if worddict[i][1] == worddict[i+1][1]:
+        maxnum += 1
+    else:
+        break
+for i in range(maxnum):
+    print(worddict[i])
